@@ -1,0 +1,25 @@
+version: "3"
+services:
+  server:
+    image: dealTA
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/dealdb?useSSL=false
+    networks:
+      - prgsoftdealTA-net
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:5.7
+    networks:
+      - prgsoftdealTA-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=pdeal1234
+      - MYSQL_DATABASE=dealdb
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=pdeal1234
+
+networks:
+  prgsoftdealTA-net:
